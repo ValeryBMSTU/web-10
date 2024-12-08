@@ -5,23 +5,23 @@ import (
 	"net/http"
 
 	"github.com/ValeryBMSTU/web-10/pkg/vars"
+
 	"github.com/labstack/echo/v4"
 )
 
 // GetHello возвращает случайное приветствие пользователю
-func (srv *Server) GetHello(e echo.Context) error {
-	msg, err := srv.uc.FetchHelloMessage()
+func (srv *Server) GetCount(e echo.Context) error {
+	msg, err := srv.uc.FetchCount()
 	if err != nil {
 		return e.String(http.StatusInternalServerError, err.Error())
 	}
-
 	return e.JSON(http.StatusOK, msg)
 }
 
 // PostHello Помещает новый вариант приветствия в БД
-func (srv *Server) PostHello(e echo.Context) error {
+func (srv *Server) PostCount(e echo.Context) error {
 	input := struct {
-		Msg *string `json:"msg"`
+		Msg *int `json:"count"`
 	}{}
 
 	err := e.Bind(&input)
@@ -33,11 +33,7 @@ func (srv *Server) PostHello(e echo.Context) error {
 		return e.String(http.StatusBadRequest, "msg is empty")
 	}
 
-	if len([]rune(*input.Msg)) > srv.maxSize {
-		return e.String(http.StatusBadRequest, "hello message too large")
-	}
-
-	err = srv.uc.SetHelloMessage(*input.Msg)
+	err = srv.uc.IncrementCount(*input.Msg)
 	if err != nil {
 		if errors.Is(err, vars.ErrAlreadyExist) {
 			return e.String(http.StatusConflict, err.Error())
