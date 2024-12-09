@@ -5,16 +5,15 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo/v4"
-	"web-10/internal/query/usecase"
 )
 
 type Server struct {
 	Address string
 	Router  *echo.Echo
-	uc      *usecase.Usecase
+	uc      Usecase
 }
 
-func NewServer(ip string, port int, uc *usecase.Usecase) *Server {
+func NewServer(ip string, port int, uc Usecase) *Server {
 	e := echo.New()
 	srv := &Server{
 		Address: fmt.Sprintf("%s:%d", ip, port),
@@ -23,7 +22,7 @@ func NewServer(ip string, port int, uc *usecase.Usecase) *Server {
 	}
 
 	srv.Router.GET("/api/user", srv.GetUser)
-	srv.Router.POST("/api/user/create", srv.PostUser)
+	srv.Router.POST("/api/user", srv.PostUser)
 
 	return srv
 }
