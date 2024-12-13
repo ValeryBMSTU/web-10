@@ -3,10 +3,10 @@ package main
 import (
 	"flag"
 	"log"
-	"web-10/internal/hello/api"
-	"web-10/internal/hello/config"
-	"web-10/internal/hello/provider"
-	"web-10/internal/hello/usecase"
+	"web-10/internal/count/api"
+	"web-10/internal/count/config"
+	"web-10/internal/count/provider"
+	"web-10/internal/count/usecase"
 
 	_ "github.com/lib/pq"
 )
@@ -22,7 +22,7 @@ func main() {
 	}
 
 	prv := provider.NewProvider(cfg.DB.Host, cfg.DB.Port, cfg.DB.User, cfg.DB.Password, cfg.DB.DBname)
-	use := usecase.NewUsecase(cfg.Usecase.DefaultMessage, prv)
+	use := usecase.NewUsecase(cfg.Usecase.DefaultMessageCount, prv)
 	srv := api.NewServer(cfg.IP, cfg.Port, cfg.API.MaxMessageSize, use)
 
 	srv.Run()

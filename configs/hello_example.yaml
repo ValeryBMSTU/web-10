@@ -1,12 +1,31 @@
 ip: "127.0.0.1"
 port: 8081
+port_count: 8082
+port_query: 8083
 api:
   max_message_size: 32
 usecase:
   default_message: "hello, world"
+  default_message_count: 0
+  default_message_query: "hello, noname!"
+
+db_count:
+  host:     "localhost"
+  port:     5432
+  user:     "postgres"
+  password: "5401"
+  dbname:   "count"
+
+db_query:
+  host:     "localhost"
+  port:     5432
+  user:     "postgres"
+  password: "5401"
+  dbname:   "query"
+
 db:
   host: "localhost"
   port: 5432
   user: "postgres"
-  password: "postgres"
+  password: "5401"
   dbname: "sandbox"
