@@ -1,9 +1,9 @@
 ip: "127.0.0.1"
-port: 8081
+port: 9000
 api:
   max_message_size: 32
 usecase:
-  default_message: "hello, world"
+  default_name: "PostgreSQL"
 db:
   host: "localhost"
   port: 5432
