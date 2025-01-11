@@ -2,17 +2,17 @@ package main
 
 import (
 	"flag"
-	"github.com/ValeryBMSTU/web-10/internal/hello/api"
-	"github.com/ValeryBMSTU/web-10/internal/hello/config"
-	"github.com/ValeryBMSTU/web-10/internal/hello/provider"
-	"github.com/ValeryBMSTU/web-10/internal/hello/usecase"
+	"github.com/ValeryBMSTU/web-10/internal/query/api"
+	"github.com/ValeryBMSTU/web-10/internal/query/config"
+	"github.com/ValeryBMSTU/web-10/internal/query/provider"
+	"github.com/ValeryBMSTU/web-10/internal/query/usecase"
 	_ "github.com/lib/pq"
 	"log"
 )
 
 func main() {
 	// Считываем аргументы командной строки
-	configPath := flag.String("config-path", "../../configs/hello_example.yaml", "путь к файлу конфигурации")
+	configPath := flag.String("config-path", "../../configs/query_example.yaml", "путь к файлу конфигурации")
 	flag.Parse()
 
 	cfg, err := config.LoadConfig(*configPath)

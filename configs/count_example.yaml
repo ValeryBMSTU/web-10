@@ -1,12 +1,12 @@
 ip: "127.0.0.1"
-port: 8082
+port: 8081
 api:
   max_message_size: 32
 usecase:
-  default_message: "hello, world"
+  default_message: "Работаем"
 db:
   host: "localhost"
   port: 5432
   user: "jabrail"
   password: "07012006"
-  dbname: "sandbox"
+  dbname: "querydb"
